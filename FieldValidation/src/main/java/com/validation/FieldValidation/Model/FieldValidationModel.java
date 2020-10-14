@@ -1,6 +1,11 @@
 package com.validation.FieldValidation.Model;
 
-public class FieldValidationModel {
+import java.io.Serializable;
+
+
+public class FieldValidationModel{
+
+
 
 	public String brLoanCode;
 	public String applicationNo;
@@ -14,6 +19,8 @@ public class FieldValidationModel {
 	public String totalChargesAmount;
 	public String minimumChargeAmount;
 	public String chargeBlankField;
+	
+	
 	/**
 	 * @return the brLoanCode
 	 */
