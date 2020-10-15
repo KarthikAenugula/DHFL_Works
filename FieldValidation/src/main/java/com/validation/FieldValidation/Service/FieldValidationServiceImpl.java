@@ -146,12 +146,29 @@ public class FieldValidationServiceImpl {
 			book.close();
 			fis.close();
 
+			List<Thread> threadList=new ArrayList<>();
+			
 			List<FieldValidationModel> queue=Collections.synchronizedList(new LinkedList<FieldValidationModel>());
 			queue.addAll(excelList);
 			
 			int threadCount=queue.size()/minimumSize;
-			
 			System.out.println("threadCount=" + threadCount);
+			
+			ApiCalls apicalls=new ApiCalls(queue);
+			
+			for(int i=1;i<threadCount;i++) {
+				
+				Thread thread=new Thread(apicalls);
+				thread.setName("Thread"+i);
+				threadList.add(thread);
+			}
+			
+			for(Thread t : threadList) {
+				System.out.println("Thread Started="+t.getName());
+				t.start();
+			}
+			
+			
 			
 			
 			
